@@ -1,6 +1,7 @@
+import 'package:expenses/provider/expense_provider.dart';
 import 'package:expenses/screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -15,15 +16,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Expenses',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        accentColor: Colors.deepOrange,
-        fontFamily: 'Quicksand',
+    return ChangeNotifierProvider(
+      create: (ctx) => Transactions(),
+      child: MaterialApp(
+        title: 'Expenses',
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+          accentColor: Colors.deepOrange,
+          fontFamily: 'Quicksand',
+        ),
+        debugShowCheckedModeBanner: false,
+        home: MyHomePage(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
     );
   }
 }
